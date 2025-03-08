@@ -2,12 +2,12 @@ FROM flink:1.17-scala_2.12
 
 WORKDIR /opt/flink
 
-COPY target/flink-loanTXN-txn-application-0.1.jar /opt/flink/usrlib/
+COPY target/flink-loan-txn-application-0.1.jar /opt/flink/usrlib/
 
 EXPOSE 8081
 EXPOSE 6123
 
-CMD ["sh", "-c", "bin/jobmanager.sh start-foreground & bin/taskmanager.sh start-foreground & bin/flink run /opt/flink/usrlib/flink-loanTXN-txn-application-0.1.jar"]
+CMD ["sh", "-c", "bin/jobmanager.sh start-foreground & bin/taskmanager.sh start-foreground & bin/flink run /opt/flink/usrlib/flink-loan-txn-application-0.1.jar"]
 
 
 

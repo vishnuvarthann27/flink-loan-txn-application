@@ -2,8 +2,8 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>flink-loanTXN-txn-application</groupId>
-	<artifactId>flink-loanTXN-txn-application</artifactId>
+	<groupId>flink-loan-txn-application</groupId>
+	<artifactId>flink-loan-txn-application</artifactId>
 	<version>0.1</version>
 	<packaging>jar</packaging>
 
