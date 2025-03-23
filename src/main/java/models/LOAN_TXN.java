@@ -16,12 +16,13 @@ public class LOAN_TXN {
     @JsonProperty("srvcr_loan_nbr")
     private Integer srvcr_loan_nbr;
 
+    @JsonProperty("txn_seq_nbr")
+    private Integer txn_seq_nbr;
+
     @JsonProperty("prin_pymt_amt")
-    @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT)
     private double prin_pymt_amt;
 
     @JsonProperty("int_pymt_amt")
-    @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT)
     private double int_pymt_amt;
 
     @JsonProperty("txn_dt")
@@ -33,19 +34,20 @@ public class LOAN_TXN {
     private Date next_pymt_due_dt;
 
     @JsonProperty("crtl_amt")
-    @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT)
     private double crtl_amt;
 
     @JsonProperty("int_only_pymt_amt")
-    @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT)
     private double int_only_pymt_amt;
 
     @JsonProperty("lqdtn_pymt_amt")
-    @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT)
     private double lqdtn_pymt_amt;
 
     @JsonProperty("prin_bal_aftr_pymt")
     private double prin_bal_aftr_pymt;
+
+    @JsonProperty("created_timestamp")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+    private Date createdTimestamp;
 
     @JsonCreator
     public LOAN_TXN() {
@@ -129,6 +131,22 @@ public class LOAN_TXN {
 
     public void setPrin_bal_aftr_pymt(double prin_bal_aftr_pymt) {
         this.prin_bal_aftr_pymt = prin_bal_aftr_pymt;
+    }
+
+    public Date getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(Date createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    public Integer getTxn_seq_nbr() {
+        return txn_seq_nbr;
+    }
+
+    public void setTxn_seq_nbr(Integer txn_seq_nbr) {
+        this.txn_seq_nbr = txn_seq_nbr;
     }
 
     @Override

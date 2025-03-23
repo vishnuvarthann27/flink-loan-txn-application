@@ -1,6 +1,7 @@
 package models;
 
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.annotation.JsonCreator;
+import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,6 +19,9 @@ public class LOAN_TXN_1 {
 
     @JsonProperty("invstr_loan_nbr")
     private String invstr_loan_nbr;
+
+    @JsonProperty("txn_seq_nbr")
+    private  String txn_seq_nbr;
 
     @JsonProperty("srvcr_loan_nbr")
     private String srvcr_loan_nbr;
@@ -42,6 +46,10 @@ public class LOAN_TXN_1 {
 
     @JsonProperty("prin_bal_aftr_pymt")
     private String prin_bal_aftr_pymt;
+
+    @JsonProperty("created_timestamp")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+    private Date createdTimestamp;
 
     public String getInvstr_loan_nbr() {
         return invstr_loan_nbr;
@@ -115,7 +123,23 @@ public class LOAN_TXN_1 {
         this.prin_bal_aftr_pymt = prin_bal_aftr_pymt;
     }
 
+    public Date getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(Date createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+
+    public String getTxn_seq_nbr() {
+        return txn_seq_nbr;
+    }
+
+    public void setTxn_seq_nbr(String txn_seq_nbr) {
+        this.txn_seq_nbr = txn_seq_nbr;
+    }
 
     public LOAN_TXN toLOANTxnFormat(){
         LOAN_TXN loanTXN = new LOAN_TXN();
@@ -123,6 +147,7 @@ public class LOAN_TXN_1 {
         try {
             loanTXN.setInvstr_loan_nbr(invstr_loan_nbr != null ? Integer.parseInt(invstr_loan_nbr) : null);
             loanTXN.setSrvcr_loan_nbr(srvcr_loan_nbr != null ? Integer.parseInt(srvcr_loan_nbr) : null);
+            loanTXN.setTxn_seq_nbr(txn_seq_nbr != null ? Integer.parseInt(txn_seq_nbr): null);
             loanTXN.setPrin_bal_aftr_pymt(prin_bal_aftr_pymt != null ? Double.parseDouble(prin_bal_aftr_pymt) : 0.0);
             loanTXN.setTxn_dt(parseDate(txn_dt));
             loanTXN.setNext_pymt_due_dt(parseDate(next_pymt_due_dt));
@@ -134,6 +159,7 @@ public class LOAN_TXN_1 {
             loanTXN.setInt_only_pymt_amt(txn_cd != null ? txn_cd.equals("12") ? Double.parseDouble(grs_int_pymt_amt) : txn_cd.equals("90") && ovrd_cd.equals("12") ? -Double.parseDouble(grs_int_pymt_amt): 0.0 : 0.0);
             loanTXN.setInt_pymt_amt(txn_cd != null ? txn_cd.equals("02") ? Double.parseDouble(grs_int_pymt_amt) : txn_cd.equals("90") && ovrd_cd.equals("02") ? -Double.parseDouble(grs_int_pymt_amt): 0.0 : 0.0);
 
+            loanTXN.setCreatedTimestamp(createdTimestamp);
         } catch (NumberFormatException e) {
             System.err.println("Error converting number: " + e.getMessage());
         } catch (ParseException e) {
